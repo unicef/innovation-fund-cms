@@ -1,0 +1,69 @@
+[
+  [
+    "slug",
+    "repository_account",
+    "repository_name",
+    "repository_label",
+    "private_key"
+  ],
+  [
+    "chat_box",
+    "dwilkie",
+    "twilreapi",
+    "Twilio Rest API"
+  ],
+  [
+    "chat_box",
+    "dwilkie",
+    "somleng",
+    "Somleng"
+  ],
+  [
+    "momconnect",
+    "rapidpro",
+    "casepro",
+    "Number of git commits"
+  ],
+  [
+    "learning_labs",
+    "learningequality",
+    "kolibri",
+    "Number of git commits"
+  ],
+  [
+    "thaetorm_koma",
+    "OpenInstituteCambodia",
+    "OI-DASH",
+    "Number of git commits"
+  ],
+  [
+    "u_report_syria",
+    "rapidpro",
+    "ureport-android",
+    "Number of git commits"
+  ],
+  [
+    "say_cel",
+    "saycel",
+    "saycel",
+    "Number of git commits"
+  ],
+  [
+    "m_power",
+    "opensrp-bangladesh",
+    "opensrp-client-unicef-if",
+    "OpenSRP Client Bangladesh"
+  ],
+  [
+    "m_power",
+    "opensrp-bangladesh",
+    "opensrp-server-unicef-if",
+    "OpenSRP Server Bangladesh"
+  ],
+  [
+    "ipal_itu",
+    "zaintq",
+    "rah-e-maa",
+    "Number of git commits"
+  ]
+]
