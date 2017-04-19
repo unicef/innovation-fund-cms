@@ -1,3 +1,6 @@
+# Innovation Fund CMS
+
+### Run frequently
    node bin/fetch -s content -e production
    node bin/fetch -s content -e staging
 
@@ -6,10 +9,10 @@
 
    node bin/fetch -s formatted_data -e production
    node bin/fetch -s formatted_data -e staging
-
    node bin/fetch -s portfolio -e production
    node bin/fetch -s portfolio -e staging
 
+### Run once a day
    node bin/repositories -s repositories -r bitbucket -e production
    node bin/repositories -s repositories -r bitbucket -e staging
    node bin/repositories -s repositories -r github -e production
