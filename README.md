@@ -13,10 +13,10 @@
     node bin/fetch -s portfolio -e staging
 
 ### Run once a day
-    node bin/repositories -s repositories -r bitbucket -e production
-    node bin/repositories -s repositories -r bitbucket -e staging
-    node bin/repositories -s repositories -r github -e production
-    node bin/repositories -s repositories -r github -e staging
+    node bin/fetch -s repositories -r bitbucket -e production
+    node bin/fetch -s repositories -r bitbucket -e staging
+    node bin/fetch -s repositories -r github -e production
+    node bin/fetch -s repositories -r github -e staging
 
     node bin/fetch  -s stories -e production
     node bin/fetch -s stories -e staging
