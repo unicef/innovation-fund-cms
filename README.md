@@ -24,8 +24,8 @@
     node bin/fetch  -s ureport -e production
     node bin/fetch -s ureport -e staging
 
-    node bin/fetch -s say_cel -e production
-    node bin/fetch -s say_cel -e staging
+    node bin/fetch -s saycel -e production
+    node bin/fetch -s saycel -e staging
     node bin/fetch  -s somleng -e production
     node bin/fetch -s somleng -e staging
     node bin/fetch -s iogt -e production
