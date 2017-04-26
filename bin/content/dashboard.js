@@ -6,8 +6,8 @@ var fetch = require('../../lib/fetch_from_spreadsheets');
 
 
 function load_budget(refBudget) {
-  return new Promise(function(resolve, reject){
-    jsonfile.readFile('./public/dashboard.json', function(err, obj) {
+  return new Promise((resolve, reject) => {
+    jsonfile.readFile('./public/dashboard.json', (err, obj) => {
       if (err) {
         return reject(err);
       }
@@ -42,7 +42,7 @@ function load_budget(refBudget) {
 }
 
 function portfolio_summaries(obj, refSummary) {
-  return new Promise(function(resolve, reject){
+  return new Promise((resolve, reject) => {
     var labels = obj.shift();
     var total_index = labels.findIndex(function(e){return e.match(/total/i);});
     var index_co_funding = labels.findIndex(function(e){return e.match(/co_funding/i);});
@@ -103,18 +103,16 @@ exports.fetch = (db) => {
     var refSummary = db.ref('summary');
     fetch.get_spreadsheet_data(
       'dashboard', // THIS is right
-      process.env.projects_spreadsheetId ||
       config.projects_spreadsheetId,
-      process.env.dashboard_worksheetId ||
       config.dashboard_worksheetId
     ).catch(console.log)
-    .then(function(){
+    .then(() => {
       return load_budget(refBudget);
     }).catch(console.log)
     .then(function(obj){
       return portfolio_summaries(obj, refSummary);
     })
-    .then(function() {
+    .then(() => {
       console.log('Dashboard loaded!');
       resolve();
     });
