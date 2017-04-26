@@ -9,11 +9,11 @@ var pages = [{parent: 'content/submit_content', node: 'country_offices'}, {paren
 
 exports.fetch = (db) => {
   return new Promise((resolve, reject) => {
-    bluebird.map(pages, function(page) {
+    bluebird.map(pages, (page) => {
       return fetch_content(page, db);
     }, {concurrency: 1})
-    .catch(function(err) { console.log(err);})
-    .then(function() {
+    .catch(console.log)
+    .then(() => {
       console.log('done!');
       resolve();
     });
@@ -23,21 +23,19 @@ exports.fetch = (db) => {
 
 function fetch_content(page, db) {
   console.log(page)
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     fetch.get_spreadsheet_data(
       page.node,
-      process.env.portfolio_content_spreadsheetId ||
       config.spreadsheet_id.content,
-      process.env['portfolio_' + page.node + '_worksheetId'] ||
       config.worksheet_id[page.node]
-    ).catch(function(err){ console.log(err);})
-    .then(function(){
+    ).catch(console.log)
+    .then(() => {
       console.log('Content fetched, about to load...');
       return load.load_json(page, db)
       .catch(
         function(err) { return reject(err); }
       )
-      .then(function(){
+      .then(() => {
         console.log('Done loading', page);
         resolve();
       });
