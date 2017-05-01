@@ -9,7 +9,7 @@ var api_url = config.api.say_cel;
 
 var current_year = new Date().getFullYear();
 var path = 'chart_data/saycel/pings';
-var url = 'http://' + api_url + ':8080/pearl-lagoon/query/' + current_year;
+var url = 'http://' + api_url + '/pearl-lagoon/query/' + current_year;
 
 exports.fetch = function(db) {
   return new Promise((resolve, reject) => {
