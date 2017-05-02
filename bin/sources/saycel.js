@@ -21,7 +21,10 @@ exports.fetch = function(db) {
     };
 
     request(url, function (error, response, body) {
-      console.log(error);
+      if (error) {
+        console.log(error);
+        process.exit();
+      }
       if (!error && response.statusCode == 200) {
         var records = JSON.parse(response.body);
         var dates = records.reduce((h, r) => {
