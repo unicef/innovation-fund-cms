@@ -17,7 +17,8 @@
     node bin/fetch -s repositories -r bitbucket -e staging
     node bin/fetch -s repositories -r github -e production
     node bin/fetch -s repositories -r github -e staging
-
+    node bin/fetch -e staging youth_engagement
+    node bin/fetch -e production youth_engagement
     node bin/fetch  -s stories -e production
     node bin/fetch -s stories -e staging
 
