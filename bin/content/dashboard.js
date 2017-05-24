@@ -80,10 +80,20 @@ function portfolio_summaries(obj, refSummary) {
           label: 'Infrastructure',
           color: '#66cc66'
         },
-        management_and_operational_research: {
+        fund_management: {
           amount: investeds[6],
-          label: 'Management and Operational Research',
+          label: 'Fund Management',
           color: '#555555'
+        },
+        technical_assistance: {
+          amount: investeds[7],
+          label: 'Technical Assistance',
+          color: '#666666'
+        },
+        operational_research: {
+          amount: investeds[8],
+          label: 'Operational Research',
+          color: '#BBBBBB'
         }
       }
     }, function(err) {
