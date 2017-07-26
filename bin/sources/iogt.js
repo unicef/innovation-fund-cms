@@ -52,7 +52,8 @@ function add_names(ary, db, firebase_ref, sites, counter) {
       var ga_id = site.id;
       var name  = site.websiteUrl.replace('http://', '').split(/\./).slice(0,2).join('-');
       var date  = moment().subtract(3, 'months').toDate(); //new Date(site.created);
-      return usersFetch.users_language(db, firebase_path, name, ga_id, date, 'newUsers', 'region')
+      // return usersFetch.users_language(db, firebase_path, name, ga_id, date, 'newUsers', 'region')
+      return usersFetch.users_info(db, firebase_path, name, ga_id, date, 'users', 0, sites)
       // .then(function(){return usersFetch.users_info(db, firebase_path, name, ga_id, date, 'users', 0, sites)})
       // .then(function(){return usersFetch.users_info(db, firebase_path, name, ga_id, date, 'newUsers', 0, sites)})
       // .then(function(){return usersFetch.with_dimension(db, firebase_path, name, ga_id, date, 'uniquePageviews', 'pageTitle', 0, sites)})
@@ -106,35 +107,41 @@ function load_iogt_for_site(db) {
   console.log('load_iogt_for_site ****');
   return new Promise((resolve, reject) => {
     var refIOGT = db.ref('iogt');
-
     db.ref('iogt_all/users').once('value').then(function(snapshot) {
       var users = snapshot.val();
       var months  = {};
-
       Object.keys(users).forEach(
-        function(c){
-          Object.keys(users[c].months).forEach(
-            function(m){
-              months[m]  = 0;
-            }
-          );
+        c => {
+          if (users[c].months) {
+            Object.keys(users[c].months).forEach(
+              m => {
+                months[m] = 0;
+              }
+            );
+          }
         }
       );
 
       Object.keys(users).forEach(
-        function(c){
-          Object.keys(users[c].months).forEach(
-            function(m){
-              months[m] = months[m] + parseInt(users[c].months[m].value.totalsForAllResults['ga:users']);
-            }
-          );
+        c => {
+          if (users[c].months) {
+            Object.keys(users[c].months).forEach(
+              m => {
+                months[m] = months[m] + parseInt(users[c].months[m].value.totalsForAllResults['ga:users']);
+              }
+            );
+          }
         }
       );
 
-      var dataSet = Object.keys(months).sort().map(function(e){return [e.substr(0,7),  parseInt(months[e]/1000)];});
+      var dataSet = Object.keys(months).sort().map(
+        function(e){return [e.substr(0,7),  parseInt(months[e]/1000)];
+        }
+      );
       refIOGT.set(dataSet, function(err) {
         if (err) {
           console.log(err);
+          return reject(err);
         }
         console.log('done!!!!')
         resolve();
