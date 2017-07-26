@@ -1,5 +1,5 @@
-// node bin/fetch -s say_cel -e production
-// node bin/fetch -s say_cel -e staginv
+// node bin/fetch -s saycel -e production
+// node bin/fetch -s saycel -e staging
 
 var config = require('../../configs/config');
 var request = require('request');
@@ -15,11 +15,11 @@ exports.fetch = function(db) {
   return new Promise((resolve, reject) => {
     var ref = db.ref(path); // Storing fund orgs
     var pings = {
-      account: 'saycel',
+      account: 'say_cel',
       label: 'Pings per month',
       kind: 'custom'
     };
-
+    console.log(url)
     request(url, function (error, response, body) {
       if (error) {
         console.log(error);
@@ -27,6 +27,7 @@ exports.fetch = function(db) {
       }
       if (!error && response.statusCode == 200) {
         var records = JSON.parse(response.body);
+
         var dates = records.reduce((h, r) => {
           var date = moment(r.date).format('YYYY-MM');
           h[date] = h[date] ? h[date] + 1 : 1;
@@ -45,6 +46,7 @@ exports.fetch = function(db) {
         var data_pretty = data.map( e => {
           return [moment(e[0]).format('MMM YYYY'), e[1]];
         });
+        console.log(data)
         pings.data = data;
         pings.data_pretty = data_pretty;
         ref.set(pings , function(err) {
