@@ -8,7 +8,7 @@ var moment = require('moment');
 var api_url = config.api.say_cel;
 
 var current_year = new Date().getFullYear();
-var path = 'chart_data/saycel/pings';
+var path = 'chart_data/say_cel/pings';
 var url = 'http://' + api_url + '/pearl-lagoon/query/' + current_year;
 
 exports.fetch = function(db) {
