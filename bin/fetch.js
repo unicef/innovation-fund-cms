@@ -4,6 +4,7 @@ var fb_config = require('../configs/firebase_service_account');
 var ArgumentParser = require('argparse').ArgumentParser;
 
 var iogt = require('./sources/iogt');
+var nine_needs = require('./sources/nine_needs');
 var saycel = require('./sources/saycel');
 var somleng = require('./sources/somleng');
 
@@ -15,6 +16,8 @@ var repositories = require('./content/repositories');
 var stories = require('./content/stories');
 var ureport = require('./content/ureport');
 var youth_engagement = require('./content/youth_engagement');
+var insights = require('./content/insights');
+
 
 var parser = new ArgumentParser({
   version: '0.0.1',
@@ -45,10 +48,10 @@ var repository_source = args.repository_source;
 
 var db_url;
 if (env === 'staging') {
-  db_url = process.env.firebase_url_staging || config.firebase.staging.url;
+  db_url = config.firebase.staging.url;
   fb_config = fb_config.staging;
 } else {
-  db_url = process.env.firebase_url_production || config.firebase.production.url;
+  db_url = config.firebase.production.url;
   fb_config = fb_config.production;
 }
 // Initialize the app with a custom auth variable, limiting the server's access
@@ -86,6 +89,9 @@ case 'stories':
 case 'youth_engagement':
   youth_engagement.fetch(db).then(process.exit)
   break;
+case 'insights':
+  insights.fetch(db).then(process.exit)
+  break;
 case 'somleng':
   somleng.fetch(db).then(process.exit)
   break;
@@ -94,6 +100,9 @@ case 'saycel':
   break;
 case 'iogt':
   iogt.fetch(db, firebase).then(process.exit);
+  break;
+case 'nine_needs':
+  nine_needs.fetch(db).then(process.exit);
   break;
 default:
   console.log('Sorry, we are out of ' + source + '.');
