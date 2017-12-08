@@ -9,7 +9,6 @@
 var moment = require('moment');
 var bluebird = require('bluebird');
 var config = require('../../configs/config');
-var bluebird = require('bluebird')
 var fetch = require('../../lib/fetch_from_spreadsheets');
 var repo = require('../../lib/get_repo_data');
 request = require('request-json');
