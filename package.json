@@ -10,13 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "child_process": "^1.0.2",
+    "curl-cmd": "0.0.1",
     "edit-google-spreadsheet": "^0.2.21",
     "firebase-admin": "^4.2.1",
+    "get-json": "^1.0.0",
     "googleapis": "^19.0.0",
+    "json-fetch": "^7.3.0",
     "jsonfile": "^2.4.0",
     "moment": "^2.18.1",
     "q": "^1.5.0",
-    "request-json": "^0.6.1",
+    "request-json": "^0.6.2",
     "write-json": "^1.0.1"
   },
   "devDependencies": {
